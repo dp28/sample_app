@@ -1,73 +1,31 @@
 require 'spec_helper'
+include ApplicationHelper
 
 describe "StaticPages" do
 
-  let(:base_title) { "Ruby on Rails Tutorial Sample App" }    
-  let(:static_pages_url) { "/static_pages/" }   
+  subject { page }  
   
-  describe "Home page" do  
-  
-    let(:home_url) { "#{static_pages_url}home" }
-    
-    it "should have the h1 'Sample App'" do
-      visit "#{home_url}"
-      page.should have_selector('h1', text: 'Sample App')
-    end
-    
-    it "should have the correct title" do
-      visit "#{home_url}"
-      page.should have_selector('title', text: "#{base_title}")
-    end
-    
-    it "should not have a custom page title" do
-      visit "#{home_url}"
-      page.should_not have_selector('title', text: '| ') 
-     
-    end
+  describe "Home page" do 
+    before { visit root_path }          
+    it { should have_selector('h1', text: 'Sample App') }    
+    it { should have_selector('title', text: full_title('')) }    
   end
   
   describe "Help page" do
-  
-    let(:help_url) { "#{static_pages_url}help" }
-    
-    it "should have the h1 'Help'" do
-      visit "#{help_url}"
-      page.should have_selector('h1', text: 'Help')
-    end
-    
-    it "should have the correct title" do
-      visit "#{help_url}"
-      page.should have_selector('title', text: "#{base_title} | Help")
-    end
+    before { visit help_path }   
+    it { should have_selector('h1', text: 'Help') }    
+    it { should have_selector('title', text: full_title('Help')) }
   end
   
   describe "About page" do
-  
-    let(:about_url) { "#{static_pages_url}about" } 
-    
-    it "should have the h1 'About'" do
-      visit "#{about_url}"
-      page.should have_selector('h1', text: 'About')
-    end
-    
-    it "should have the correct title" do
-      visit "#{about_url}"
-      page.should have_selector('title', text: "#{base_title} | About")
-    end
+    before { visit about_path }    
+    it { should have_selector('h1', text: 'About') }    
+    it { should have_selector('title', text: full_title('About')) }
   end
   
   describe "Contact page" do
-  
-    let(:contact_url) { "#{static_pages_url}contact" } 
-    
-    it "should have the h1 'Contact'" do
-      visit "#{contact_url}"
-      page.should have_selector('h1', text: 'Contact')
-    end
-    
-    it "should have the correct title" do
-      visit "#{contact_url}"
-      page.should have_selector('title', text: "#{base_title} | Contact")
-    end
+    before { visit contact_path }    
+    it { should have_selector('h1', text: 'Contact') }    
+    it { should have_selector('title', text: full_title('Contact')) }
   end
 end
