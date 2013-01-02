@@ -10,6 +10,21 @@ describe "StaticPages" do
     it { should have_selector('title', text: full_title(page_title)) }
   end
   
+  it "should have the right links on the layout" do
+    visit root_path
+    click_link "Help"
+    page.should have_selector('title', text: full_title('Help'))
+    click_link "About"
+    page.should have_selector('title', text: full_title('About'))
+    click_link "Contact"
+    page.should have_selector('title', text: full_title('Contact'))
+    click_link "Home"
+    click_link "Sign up"
+    page.should have_selector('title', text: full_title('Sign up'))
+    click_link "sample app"
+    page.should have_selector('title', text: full_title(''))
+  end
+  
   describe "Home page" do 
     before { visit root_path }          
     let(:heading) { 'Sample App' }
