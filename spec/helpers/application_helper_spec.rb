@@ -4,7 +4,7 @@ describe ApplicationHelper do
   
   describe "full_title" do
   
-    it "should include the page title" do
+    it "should include the page title" do      
       full_title("test").should =~ /test/
     end
     
