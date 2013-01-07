@@ -18,7 +18,7 @@ describe "UserPages" do
     let(:submit) { "Create my account" }
     
     it { should have_selector('h1', text: 'Sign up') }
-    it { should have_selector('title', text: 'Sign up') }
+    it { should have_selector('title', text: 'Sign up') } 
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -51,6 +51,7 @@ describe "UserPages" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_link('Sign out') }
       end
     end
   end

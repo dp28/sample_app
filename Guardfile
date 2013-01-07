@@ -16,6 +16,14 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   watch(%r{^app/views/(.+)/}) do |m|
     "spec/requests/#{m[1].singularize}_pages_spec.rb"
   end
+
+  # Added to make authentication pages work
+  watch('app/controllers/sessions_controller.rb') { "spec/requests/authentication_pages_spec.rb" }
+ 
+  watch(%r{app/views/sessions/(.+)}) do |m| 
+    "spec/requests/authentication_pages_spec.rb" 
+  end
+
   # Added code end
 
   watch(%r{^spec/.+_spec\.rb$})
